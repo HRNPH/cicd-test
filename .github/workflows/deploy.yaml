@@ -12,5 +12,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      # Install NodeJS
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Build
+        run: npm run build
+
       - name: HealthCheck
         run: echo "Health Check Passed"
